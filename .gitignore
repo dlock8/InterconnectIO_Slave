@@ -1,0 +1,10 @@
+# Ignore everything in the build directory
+/build/*
+
+# But don't ignore the firmware directory inside build
+!/build/firmware/
+
+# Only track .uf2 files in the firmware directory
+/build/firmware/*
+!/build/firmware/*.uf2
+!/build/firmware/*.elf

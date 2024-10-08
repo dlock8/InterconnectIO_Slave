@@ -1,0 +1,12 @@
+/*
+ * Copyright (c) 2022 
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+
+
+// Version of SLAVE software
+#define IO_SLAVE_VERSION_MAJOR @IO_SLAVE_VERSION_MAJOR@
+#define IO_SLAVE_VERSION_MINOR @IO_SLAVE_VERSION_MINOR@
+

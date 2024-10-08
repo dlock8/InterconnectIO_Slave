@@ -1,0 +1,12 @@
+<map id="firmware/slave.c" name="firmware/slave.c">
+<area shape="rect" id="node1" title="Main loop to control the Pico Slave Device." alt="" coords="370,5,501,32"/>
+<area shape="rect" id="node2" href="$i2c__fifo_8h.html" title="I2C non&#45;blocking r/w." alt="" coords="5,80,87,107"/>
+<area shape="rect" id="node4" href="$i2c__slave_8h.html" title="I2C slave setup." alt="" coords="111,80,205,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="230,80,331,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="355,80,422,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="447,80,517,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="542,80,625,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="649,80,811,107"/>
+<area shape="rect" id="node10" title=" " alt="" coords="835,80,937,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="43,155,161,181"/>
+</map>

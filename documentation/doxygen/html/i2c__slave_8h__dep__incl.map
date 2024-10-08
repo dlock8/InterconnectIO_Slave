@@ -1,0 +1,4 @@
+<map id="firmware/i2c_slave/include/i2c_slave.h" name="firmware/i2c_slave/include/i2c_slave.h">
+<area shape="rect" id="node1" title="I2C slave setup." alt="" coords="5,5,156,47"/>
+<area shape="rect" id="node2" href="$slave_8c.html" title="Main loop to control the Pico Slave Device." alt="" coords="15,95,146,121"/>
+</map>

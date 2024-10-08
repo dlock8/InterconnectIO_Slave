@@ -1,0 +1,186 @@
+\hypertarget{slave_8c}{}\doxysection{firmware/slave.c File Reference}
+\label{slave_8c}\index{firmware/slave.c@{firmware/slave.c}}
+
+
+Main loop to control the Pico Slave Device.  
+
+
+{\ttfamily \#include $<$i2c\+\_\+fifo.\+h$>$}\newline
+{\ttfamily \#include $<$i2c\+\_\+slave.\+h$>$}\newline
+{\ttfamily \#include $<$pico/stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}hardware/watchdog.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}userconfig.\+h\char`\"{}}\newline
+Include dependency graph for slave.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{slave_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structMESSAGE}{MESSAGE}}
+\begin{DoxyCompactList}\small\item\em Structure representing a message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{slave_8c_aeca90e1c1c62b70670514ffc18c9dfd4}{MESSAGE\+\_\+\+SIZE}}~64
+\begin{DoxyCompactList}\small\item\em Queue implementation for \mbox{\hyperlink{structMESSAGE}{MESSAGE}} structures. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{slave_8c_a142810068f1b99cd93d3fc9f0e160e02}{QUEUE\+\_\+\+SIZE}}~64
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{slave_8c_a859df203fa7c1fb839e68ce8f39ac6f6}{enque}} (\mbox{\hyperlink{structMESSAGE}{MESSAGE}} $\ast$message)
+\begin{DoxyCompactList}\small\item\em Enqueue a message into the queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{slave_8c_ae733fe874122894bac75e1be37326ceb}{init\+\_\+queue}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the queue. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{slave_8c_a0993f9f10719ecefebb0b622f9e3ba96}{deque}} (\mbox{\hyperlink{structMESSAGE}{MESSAGE}} $\ast$message)
+\begin{DoxyCompactList}\small\item\em Dequeue a message from the queue. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{slave_8c_a06d62829ea92c02b468ca8c148c43b4d}{read\+\_\+i2c\+\_\+address}} ()
+\begin{DoxyCompactList}\small\item\em function who read the 2 externals pins to define the I2C address to use. The address = 0x20 + value of 2 externals pins \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{slave_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Used on in development to loopback I2C to simulate master talking to slave. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{slave_8c_ab0465a95499aab048b02601cd65e1ad6}\label{slave_8c_ab0465a95499aab048b02601cd65e1ad6}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>\mbox{\hyperlink{structMESSAGE}{MESSAGE}} {\bfseries messages} \mbox{[}\mbox{\hyperlink{slave_8c_a142810068f1b99cd93d3fc9f0e160e02}{QUEUE\_SIZE}}\mbox{]}\\
+\>int \mbox{\hyperlink{slave_8c_a9320720f4d683cc7c76f800be700ac35}{begin}}\\
+\>\>{\em Array of messages. }\\
+\>int \mbox{\hyperlink{slave_8c_abce9f5dc9c83f2639b72024fdee5d388}{end}}\\
+\>\>{\em Index of the first message. }\\
+\>int \mbox{\hyperlink{slave_8c_a4ba74c1822743f8cac000c1eb4542510}{current\_load}}\\
+\>\>{\em Index of the last message. }\\
+\} \mbox{\hyperlink{slave_8c_ab0465a95499aab048b02601cd65e1ad6}{queue}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em Global queue structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main loop to control the Pico Slave Device. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Lockhead 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2024
+\end{DoxyDate}
+The Slave Pico are the secondary controller for the Interconnect\+IO Box. The slave accept a byte command followed by a byte data.
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2024, D.\+Lockhead. All rights reserved.
+\end{DoxyCopyright}
+This software is licensed under the BSD 3-\/Clause License. See the LICENSE file for more details. 
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{slave_8c_aeca90e1c1c62b70670514ffc18c9dfd4}\label{slave_8c_aeca90e1c1c62b70670514ffc18c9dfd4}} 
+\index{slave.c@{slave.c}!MESSAGE\_SIZE@{MESSAGE\_SIZE}}
+\index{MESSAGE\_SIZE@{MESSAGE\_SIZE}!slave.c@{slave.c}}
+\doxysubsubsection{\texorpdfstring{MESSAGE\_SIZE}{MESSAGE\_SIZE}}
+{\footnotesize\ttfamily \#define MESSAGE\+\_\+\+SIZE~64}
+
+
+
+Queue implementation for \mbox{\hyperlink{structMESSAGE}{MESSAGE}} structures. 
+
+Size of each message. \mbox{\Hypertarget{slave_8c_a142810068f1b99cd93d3fc9f0e160e02}\label{slave_8c_a142810068f1b99cd93d3fc9f0e160e02}} 
+\index{slave.c@{slave.c}!QUEUE\_SIZE@{QUEUE\_SIZE}}
+\index{QUEUE\_SIZE@{QUEUE\_SIZE}!slave.c@{slave.c}}
+\doxysubsubsection{\texorpdfstring{QUEUE\_SIZE}{QUEUE\_SIZE}}
+{\footnotesize\ttfamily \#define QUEUE\+\_\+\+SIZE~64}
+
+Size of the queue (set high for development). 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{slave_8c_a0993f9f10719ecefebb0b622f9e3ba96}\label{slave_8c_a0993f9f10719ecefebb0b622f9e3ba96}} 
+\index{slave.c@{slave.c}!deque@{deque}}
+\index{deque@{deque}!slave.c@{slave.c}}
+\doxysubsubsection{\texorpdfstring{deque()}{deque()}}
+{\footnotesize\ttfamily bool deque (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMESSAGE}{MESSAGE}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Dequeue a message from the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Pointer to the message to be dequeued. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the message was successfully dequeued, false if the queue is empty. 
+\end{DoxyReturn}
+Retrieve the message from the queue.
+
+Clear the dequeued message.
+
+Update the beginning index.\mbox{\Hypertarget{slave_8c_a859df203fa7c1fb839e68ce8f39ac6f6}\label{slave_8c_a859df203fa7c1fb839e68ce8f39ac6f6}} 
+\index{slave.c@{slave.c}!enque@{enque}}
+\index{enque@{enque}!slave.c@{slave.c}}
+\doxysubsubsection{\texorpdfstring{enque()}{enque()}}
+{\footnotesize\ttfamily bool enque (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMESSAGE}{MESSAGE}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Enqueue a message into the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Pointer to the message to be enqueued. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the message was successfully enqueued, false if the queue is full. 
+\end{DoxyReturn}
+Add the message to the queue.\mbox{\Hypertarget{slave_8c_ae733fe874122894bac75e1be37326ceb}\label{slave_8c_ae733fe874122894bac75e1be37326ceb}} 
+\index{slave.c@{slave.c}!init\_queue@{init\_queue}}
+\index{init\_queue@{init\_queue}!slave.c@{slave.c}}
+\doxysubsubsection{\texorpdfstring{init\_queue()}{init\_queue()}}
+{\footnotesize\ttfamily void init\+\_\+queue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the queue. 
+
+Initialize the beginning index.
+
+Initialize the end index.
+
+Initialize the current load.
+
+Clear the queue.\mbox{\Hypertarget{slave_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{slave_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{slave.c@{slave.c}!main@{main}}
+\index{main@{main}!slave.c@{slave.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Used on in development to loopback I2C to simulate master talking to slave. 
+
+main loop to execute i2c command from master. Pico les is flashing to indicate heartbeat
+
+\begin{DoxyReturn}{Returns}
+int do nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{slave_8c_a06d62829ea92c02b468ca8c148c43b4d}\label{slave_8c_a06d62829ea92c02b468ca8c148c43b4d}} 
+\index{slave.c@{slave.c}!read\_i2c\_address@{read\_i2c\_address}}
+\index{read\_i2c\_address@{read\_i2c\_address}!slave.c@{slave.c}}
+\doxysubsubsection{\texorpdfstring{read\_i2c\_address()}{read\_i2c\_address()}}
+{\footnotesize\ttfamily uint8\+\_\+t read\+\_\+i2c\+\_\+address (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+function who read the 2 externals pins to define the I2C address to use. The address = 0x20 + value of 2 externals pins 
+
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Address to use for the Pico slave 
+\end{DoxyReturn}

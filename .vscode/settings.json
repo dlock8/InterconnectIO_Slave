@@ -1,0 +1,7 @@
+{
+    "cmake.buildBeforeRun": true,
+    "cmake.sourceDirectory": "${workspaceFolder}/",
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "doxygen_runner.configuration_file_override": "${workspaceFolder}/Doxyfile"
+  
+}

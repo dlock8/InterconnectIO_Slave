@@ -1,0 +1,70 @@
+Modified to run for my application
+
+The Raspberry Pi Pico C/\+C++ SDK has all you need to write an I2C master, but is curiously lacking when it comes to I2C in slave mode. This library fills that gap to easily turn the Pico into an I2C slave.\hypertarget{md_README_autotoc_md1}{}\doxysection{Examples}\label{md_README_autotoc_md1}
+\hypertarget{md_README_autotoc_md2}{}\doxysubsection{Setup}\label{md_README_autotoc_md2}
+Follow the instructions in \href{https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf}{\texttt{ Getting started with Raspberry Pi Pico}} to setup your build environment.\hypertarget{md_README_autotoc_md3}{}\doxysection{Links}\label{md_README_autotoc_md3}
+\hypertarget{md_README_autotoc_md4}{}\doxysection{Original Authors}\label{md_README_autotoc_md4}
+Valentin Milea \href{mailto:valentin.milea@gmail.com}{\texttt{ valentin.\+milea@gmail.\+com}}\hypertarget{md_README_autotoc_md5}{}\doxysection{Adaptation Authors}\label{md_README_autotoc_md5}
+Daniel Lockhead \href{mailto:daniellockhead@gmail.com}{\texttt{ daniellockhead@gmail.\+com}}\hypertarget{md_README_autotoc_md6}{}\doxysection{I2\+C Command supported}\label{md_README_autotoc_md6}
+Pico i2C Slave mode Protocol
+
+I2C Command is 2 bytes long\+: Command\+\_\+byte (1 byte) + Data (1 byte)
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Command\+\_\+\+Byte   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Command\+\_\+\+Byte   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endhead
+00   &Reserved   &used for special purpose    \\\cline{1-3}
+01   &Get Major Version   &return major version of firmware    \\\cline{1-3}
+02   &Get Minor Version   &return minor version of firmware    \\\cline{1-3}
+10   &Clear GPx   &Write 0 on GPx    \\\cline{1-3}
+11   &Set GPx   &Write 1 on GPx    \\\cline{1-3}
+12   &Clear Bank x   &Open all relay from bank x    \\\cline{1-3}
+13   &Read Bank x   &Read Bank status (Bit0 = CH0, Bit1=CH1, Bit7=CH7)    \\\cline{1-3}
+15   &Read GPx   &Read GPx state    \\\cline{1-3}
+20   &Set Dir GPx Out   &Set direction Out for Gpx    \\\cline{1-3}
+21   &Set Dir GPx In   &Set direction In for Gpx    \\\cline{1-3}
+25   &Get Dir GPx   &Read GPX direction, 0 = In , 1 = Out    \\\cline{1-3}
+30   &Set GPx strenght = 2mA   &Set GPx output max current    \\\cline{1-3}
+31   &Set GPx strenght = 4mA   &Set GPx output max current    \\\cline{1-3}
+32   &Set GPx strenght = 8mA   &Set GPx output max current    \\\cline{1-3}
+33   &Set GPx strenght = 12mA   &Set GPx output max current    \\\cline{1-3}
+35   &Get Gpx drive strenght   &Read strenght\+: 0\+: 2mA, 1\+: 4mA, 2\+: 8mA, 3\+: 12mA    \\\cline{1-3}
+41   &Set pull\+\_\+up GPx   &Add pull-\/up to Gpx    \\\cline{1-3}
+45   &Get pull-\/up GPx   &Read pull-\/up state (1\+: pull-\/up active)    \\\cline{1-3}
+50   &Disable pulls   &Remove pull-\/up and pull-\/down    \\\cline{1-3}
+51   &Set pull\+\_\+down GPx   &Add pull-\/down to Gpx    \\\cline{1-3}
+55   &Get pull-\/down GPx   &Read pull-\/down state (1\+: pull-\/down active)    \\\cline{1-3}
+60   &Set Pads State value   &Set Pads State register for use later    \\\cline{1-3}
+61   &Set GPx to Pads State   &Write contains of command 60 on GPx    \\\cline{1-3}
+65   &Get Pads state Gpx   &Read PAD register for Gpx   \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md_README_autotoc_md7}{}\doxysection{8 Bit I/\+O port I2\+C Command}\label{md_README_autotoc_md7}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Command\+\_\+\+Byte   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Command\+\_\+\+Byte   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endhead
+80   &Set IO Mask Port 0   &8 bit mask direction 0 = In , 1 = Out    \\\cline{1-3}
+81   &Set IO Output Port 0   &Set Output Line 0= Low 1=High    \\\cline{1-3}
+85   &Read IO Input Port 0   &Get Input Line 0= Low 1=High    \\\cline{1-3}
+90   &Set IO Mask Port 1   &8 bit mask direction 0 = In , 1 = Out    \\\cline{1-3}
+91   &Set IO Output Port 1   &Set Output Line 0= Low 1=High    \\\cline{1-3}
+95   &Read IO Input Port 1   &Get Input Line 0= Low 1=High    \\\cline{1-3}
+100   &Device Status   &Bit Status (8 bits)    \\\cline{1-3}
+&Bit 0   &Config Completed 0\+: true    \\\cline{1-3}
+&Bit 1   &Command accepted 0\+: true    \\\cline{1-3}
+&Bit 2   &Error 1= true    \\\cline{1-3}
+&Bit 3   &watchdog trigged 1= true   \\\cline{1-3}
+\end{longtabu}
