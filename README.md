@@ -1,4 +1,4 @@
-# First TestStation InterconnectIO SCPI Slave firmware
+# First TestStation InterconnectIO Slave firmware  700-2000-011
 
 The complete FTS project is documented on a github website:  https://dlock8.github.io/FTS_Website/
 
@@ -15,44 +15,39 @@ This project is licensed under the BSD 3-Clause License. See the [LICENSE](./LIC
 
 ## Project setup
 
-This project has been developped on raspberry pi 4 following installation instruction from this pdf [getting-started-with-pico_C.pdf](./documentation/getting-started-with-pico_C.pdf),  a copy of the pdf is located on the main folder.
-Visual studio has been used for development and raspberry pi 4 for Pico debug.  
+This project was initially developed in 2020 on a Raspberry Pi 4, following the installation instructions from Getting Started with Pico_C.pdf Version 1.4.
+
+The current version has been developed on a Raspberry Pi 5 using Visual Studio with the Raspberry Pi Pico extension, following the instructions in Getting Started with Pico_C.pdf dated 15 October 2024.
 
 Based on https://github.com/vmilea/pico_i2c_slave. The pico_i2c_slave software has been added to enable the Raspberry Pi Pico to function as an I2C device.
 
+For debugging, we utilize the GPIO pins of the Raspberry Pi 5, instead of the suggested debug probe.
 
-The compilation is performed using Visual Studio and the important extension installed are:
+Doxygen need to be installed. See the instructions [doxygen](https://github.com/fbaeuerlein/cpp-vscode-guide/blob/master/doc/Documentation.md)
 
-* Cmake v0.0.17
-* Cmake Tools v1.20.10
-* Cortex-Debug v1.12.1
-* debug-tracker-vscode v0.0.15
+
+The compilation is performed using Visual Studio and the extension installed are:
+
+* Raspberry Pi Pico Visual Studio Code extension 0.17.2
 * Doxygen Documentation Generator v1.4.0
 * Doxygen runner v1.8.0
-* Github Pull Request v0.96.0
-* Hex Editor v1.10.0
-* MemoryView v0.0.25
-* peripheral Viewer v1.4.6
-* RTOS view v0.0.7
-* C/C++ v1.21.6
-
-
-I not sure if all extensions are required but is the one installed presently.
 
 
 ## Building
 
-Build of this cmake project is performed with Visual Studio
+Build of this cmake project is performed with Visual Studio using Raspberry Pi Pico extension
 
 ## Development
 
 * [`slave.c`](slave.c) is the main source file for the firmware.
-* [`CMakeLists.txt`](CMakeLists.txt) contains build instructions for CMake, including how to build the SCPI library.
+* [`CMakeLists.txt`](CMakeLists.txt) contains build instructions for CMake.
 * [`pico_sdk_import.cmake`](pico_sdk_import.cmake) was (as usual) copied verbatim from the Pico SDK and allows CMake to interact with the SDK’s functionality.
+* [`raspberrypi-swd.cfg`](raspberrypi-swd.cfg) need to be copied on openocd interface folder 
+(../.pico-sdk/openocd/0.12.0+dev/scripts/interface/) if GPIO pins is used to debug project.
 
 ## Installation
 
-* The Files slave.uf2 contains the firmware to be loaded on the Pico RP2040 board using USB cable and boot button.
+* The Files INTERCONNECTIO_SLAVE.uf2 contains the firmware to be loaded on the Pico RP2040 board using USB cable and boot button.
 * When software loaded, the Pico board should be installed on the location marked SLAVE_1, SLAVE_2 and SLAVE_3 on interconnectIO Board.
 * On board Pico Led will flash slowly (heartbeat) on power ON.
 
@@ -107,7 +102,7 @@ I2C Command is 2 bytes long:  Command_byte (1 byte) + Data (1 byte)
 |    | Bit 0                 | Config Completed   0: true |
 |    | Bit 1                 | Command accepted   0: true |
 |    | Bit 2                 | Error  1= true|
-|    | Bit 3                 | watchdog trigged 1= true|
+|    | Bit 3                 | watchdog triggered 1= true|
 
 
 ## I2C Communication Example

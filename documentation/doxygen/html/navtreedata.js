@@ -25,15 +25,15 @@
 var NAVTREE =
 [
   [ "InterconnectIO Slave", "index.html", [
-    [ "I2C slave library for the Raspberry Pi Pico", "md_README.html", [
-      [ "Examples", "md_README.html#autotoc_md1", [
-        [ "Setup", "md_README.html#autotoc_md2", null ]
-      ] ],
-      [ "Links", "md_README.html#autotoc_md3", null ],
-      [ "Original Authors", "md_README.html#autotoc_md4", null ],
-      [ "Adaptation Authors", "md_README.html#autotoc_md5", null ],
+    [ "First TestStation InterconnectIO Slave firmware", "md_README.html", [
+      [ "License", "md_README.html#autotoc_md1", null ],
+      [ "Project setup", "md_README.html#autotoc_md2", null ],
+      [ "Building", "md_README.html#autotoc_md3", null ],
+      [ "Development", "md_README.html#autotoc_md4", null ],
+      [ "Installation", "md_README.html#autotoc_md5", null ],
       [ "I2C Command supported", "md_README.html#autotoc_md6", null ],
-      [ "8 Bit I/O port I2C Command", "md_README.html#autotoc_md7", null ]
+      [ "8 Bit I/O port I2C Command", "md_README.html#autotoc_md7", null ],
+      [ "I2C Communication Example", "md_README.html#autotoc_md8", null ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],

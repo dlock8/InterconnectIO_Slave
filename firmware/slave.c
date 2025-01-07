@@ -24,7 +24,7 @@
 #include "hardware/watchdog.h"
 #include "userconfig.h"
 
-static const uint I2C_OFFSET_ADDRESS = 0x20;  // ofsset to add to the physical address read
+static const uint I2C_OFFSET_ADDRESS = 0x20;  // offset to add to the physical address read
 static const uint PICO_PORT_ADDRESS = 0x21;   // Pico address where port is used
 static const uint REG_STATUS = 100;           // Register used to report Status
 
@@ -379,7 +379,13 @@ typedef struct
         // For readback of Set value, we just return the contents of register
 
         switch (cmd)
-        {  // Command byte yo et register
+        {  // Command byte to read register
+
+          case 00:  // get presence value
+            context.reg[context.reg_address] = 55;
+            sprintf(&rec.data[0], "Cmd %02d, Read Cmd: %02d ", cmd, context.reg[context.reg_address]);
+            enque(&rec);
+            break;
 
           case 01:  // get Major Version
             context.reg[context.reg_address] = IO_SLAVE_VERSION_MAJOR;
@@ -424,7 +430,7 @@ typedef struct
 
           case 35:                                                               // get GPIO strength
             svalue = gpio_get_drive_strength(context.reg[context.reg_address]);  // Read strength Value
-            sprintf(&rec.data[0], "Cmd %02d, Read strenght Gpio: %02d ,State: %01d ", cmd, context.reg[context.reg_address], svalue);
+            sprintf(&rec.data[0], "Cmd %02d, Read strength Gpio: %02d ,State: %01d ", cmd, context.reg[context.reg_address], svalue);
             enque(&rec);
             context.reg[context.reg_address] = svalue;
             break;
@@ -483,7 +489,7 @@ typedef struct
 
             break;
 
-          case 100:  // get statsus register, nothing to do
+          case 100:  // get status register, nothing to do
             context.reg[REG_STATUS] = status.all_flags;
             sprintf(&rec.data[0], "Cmd %02d,Status register: 0x%01x ", cmd, context.reg[REG_STATUS]);
             enque(&rec);
@@ -491,7 +497,7 @@ typedef struct
         }
 
         i2c_write_byte(i2c, context.reg[context.reg_address]);
-        sprintf(&rec.data[0], "Read Cmd : %02d , Value: %02d ", cmd, context.reg[context.reg_address]);
+        sprintf(&rec.data[0], "Write Cmd : %02d , Value: %02d ", cmd, context.reg[context.reg_address]);
         enque(&rec);
 
         break;
@@ -523,7 +529,7 @@ typedef struct
     gpio_set_function(I2C_SLAVE_ADDRESS_IO1, GPIO_FUNC_SIO);  // Set mode to software IO Control
     gpio_set_dir(I2C_SLAVE_ADDRESS_IO1, false);               // Set IO to input
     gpio_pull_up(I2C_SLAVE_ADDRESS_IO1);                      // Set to pull-up
-
+    sleep_ms(1);
     io0 = gpio_get(I2C_SLAVE_ADDRESS_IO0);
     io1 = gpio_get(I2C_SLAVE_ADDRESS_IO1);
     I2C_address = I2C_OFFSET_ADDRESS + (io1 << 1) + io0;
@@ -709,7 +715,7 @@ typedef struct
       while (deque(&rec))
       {
         gpio_put(PICO_DEFAULT_LED_PIN, 0);                         // Turn OFF board led
-        printf("Pico %02x: %s\n", context.i2c_add, &rec.data[0]);  // send message to serial port
+        printf("Pico %02x: %s\n\r", context.i2c_add, &rec.data[0]);  // send message to serial port
         sleep_ms(50);
         gpio_put(PICO_DEFAULT_LED_PIN, 1);  // Turn ON board led
       }

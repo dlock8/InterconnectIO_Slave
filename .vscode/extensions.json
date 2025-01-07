@@ -1,5 +1,10 @@
 {
     "recommendations": [
-        "betwo.vscode-doxygen-runner"
+        "ms-vscode.vscode-serial-monitor",
+        "ms-vscode.cpptools-extension-pack",
+        "betwo.vscode-doxygen-runner",
+        "marus25.cortex-debug",
+        "ms-vscode.cpptools",
+        "raspberry-pi.raspberry-pi-pico"
     ]
 }

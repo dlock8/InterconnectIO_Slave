@@ -1,0 +1,39 @@
+\hypertarget{i2c__slave_8h_source}{}\doxysection{i2c\+\_\+slave.\+h}
+\label{i2c__slave_8h_source}\index{firmware/i2c\_slave/include/i2c\_slave.h@{firmware/i2c\_slave/include/i2c\_slave.h}}
+\mbox{\hyperlink{i2c__slave_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (c) 2021 Valentin Milea <valentin.milea@gmail.com>}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * SPDX-\/License-\/Identifier: MIT}}
+\DoxyCodeLine{5 \textcolor{comment}{ */}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef \_I2C\_SLAVE\_H\_}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define \_I2C\_SLAVE\_H\_}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <hardware/i2c.h>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{13 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{24 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \mbox{\hyperlink{i2c__slave_8h_ad8b613f0d4e9d1b9511ca0b6d6ab7e8c}{i2c\_slave\_event\_t}}}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26     \mbox{\hyperlink{i2c__slave_8h_ad8b613f0d4e9d1b9511ca0b6d6ab7e8ca7bc1a9bb9db707479c140a49c4d62a51}{I2C\_SLAVE\_RECEIVE}}, }
+\DoxyCodeLine{27     \mbox{\hyperlink{i2c__slave_8h_ad8b613f0d4e9d1b9511ca0b6d6ab7e8ca495a6f0ce75738519ac201349ac38c22}{I2C\_SLAVE\_REQUEST}}, }
+\DoxyCodeLine{28     \mbox{\hyperlink{i2c__slave_8h_ad8b613f0d4e9d1b9511ca0b6d6ab7e8ca857dc8c139941a8f8bb6888a84e4b83f}{I2C\_SLAVE\_FINISH}}, }
+\DoxyCodeLine{29 \} \mbox{\hyperlink{i2c__slave_8h_ad8b613f0d4e9d1b9511ca0b6d6ab7e8c}{i2c\_slave\_event\_t}};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{42 \textcolor{keyword}{typedef} void (*\mbox{\hyperlink{i2c__slave_8h_af1bb7bb1e79c309b290bf0e8ccd57dff}{i2c\_slave\_handler\_t}})(i2c\_inst\_t *i2c, \mbox{\hyperlink{i2c__slave_8h_ad8b613f0d4e9d1b9511ca0b6d6ab7e8c}{i2c\_slave\_event\_t}} event);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{52 \textcolor{keywordtype}{void} \mbox{\hyperlink{i2c__slave_8h_a2ecc43ff4a3c673a704d0c7bd7d91db4}{i2c\_slave\_init}}(i2c\_inst\_t *i2c, uint8\_t address, \mbox{\hyperlink{i2c__slave_8h_af1bb7bb1e79c309b290bf0e8ccd57dff}{i2c\_slave\_handler\_t}} handler);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{59 \textcolor{keywordtype}{void} \mbox{\hyperlink{i2c__slave_8h_aebbea8f5a707f23750ba3e0c8b5eb6ee}{i2c\_slave\_deinit}}(i2c\_inst\_t *i2c);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{62 \}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_I2C\_SLAVE\_H\_}}
+
+\end{DoxyCode}

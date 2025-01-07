@@ -1,0 +1,38 @@
+\hypertarget{i2c__fifo_8h_source}{}\doxysection{i2c\+\_\+fifo.\+h}
+\label{i2c__fifo_8h_source}\index{firmware/i2c\_slave/include/i2c\_fifo.h@{firmware/i2c\_slave/include/i2c\_fifo.h}}
+\mbox{\hyperlink{i2c__fifo_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (c) 2021 Valentin Milea <valentin.milea@gmail.com>}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * SPDX-\/License-\/Identifier: MIT}}
+\DoxyCodeLine{5 \textcolor{comment}{ */}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef \_I2C\_FIFO\_H\_}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define \_I2C\_FIFO\_H\_}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <hardware/i2c.h>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{13 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{29 \textcolor{keyword}{static} \textcolor{keyword}{inline} uint8\_t i2c\_read\_byte(i2c\_inst\_t *i2c) \{}
+\DoxyCodeLine{30     i2c\_hw\_t *hw = i2c\_get\_hw(i2c);}
+\DoxyCodeLine{31     assert(hw-\/>status \& I2C\_IC\_STATUS\_RFNE\_BITS); \textcolor{comment}{// Rx FIFO must not be empty}}
+\DoxyCodeLine{32     \textcolor{keywordflow}{return} (uint8\_t)hw-\/>data\_cmd;}
+\DoxyCodeLine{33 \}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{43 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} i2c\_write\_byte(i2c\_inst\_t *i2c, uint8\_t value) \{}
+\DoxyCodeLine{44     i2c\_hw\_t *hw = i2c\_get\_hw(i2c);}
+\DoxyCodeLine{45     assert(hw-\/>status \& I2C\_IC\_STATUS\_TFNF\_BITS); \textcolor{comment}{// Tx FIFO must not be full}}
+\DoxyCodeLine{46     hw-\/>data\_cmd = value;}
+\DoxyCodeLine{47 \}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{50 \}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_I2C\_FIFO\_H\_}}
+
+\end{DoxyCode}
