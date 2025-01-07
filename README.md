@@ -1,4 +1,4 @@
-# First TestStation InterconnectIO Slave firmware  700-2000-011
+# First TestStation InterconnectIO Slave firmware  700-2001-011
 
 The complete FTS project is documented on a github website:  https://dlock8.github.io/FTS_Website/
 
