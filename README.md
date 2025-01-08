@@ -45,9 +45,37 @@ Build of this cmake project is performed with Visual Studio using Raspberry Pi P
 * [`raspberrypi-swd.cfg`](raspberrypi-swd.cfg) need to be copied on openocd interface folder 
 (../.pico-sdk/openocd/0.12.0+dev/scripts/interface/) if GPIO pins is used to debug project.
 
+## Firmware loading Instructions
+
+### 1. Download the Latest Firmware UF2 File:
+   You can download the latest firmware UF2 file from the following link:
+
+   [Download UF2 File](https://github.com/dlock8/InterconnectIO_Slave/blob/main/build/firmware/INTERCONNECTIO_SLAVE.uf2)
+
+   On the GitHub page, select **Download Raw file** to get the UF2 file.
+
+### 2. Prepare your Raspberry Pi Pico:
+   - Make sure your Raspberry Pi Pico is not connected to your computer.
+
+### 3. Enter Bootloader Mode:
+   - Hold down the **BOOTSEL** button on your Raspberry Pi Pico.
+   - While holding the **BOOTSEL** button, connect the Pico to your computer via USB.
+   - Release the **BOOTSEL** button after the Pico appears as a mass storage device on your computer.
+
+### 4. Copy the UF2 File:
+   - Once in bootloader mode, the Raspberry Pi Pico will show up as a removable storage drive named `RPI-RP2`.
+   - Copy the downloaded UF2 file (e.g., `INTERCONNECTIO_SLAVE.uf2`) to the `RPI-RP2` drive.
+
+### 5. Eject the Device:
+   - After the file is copied, safely eject the `RPI-RP2` drive from your computer.
+
+### 6. Reboot:
+   - The Raspberry Pi Pico will automatically reboot and start running the new firmware.
+
+
+
 ## Installation
 
-* The Files INTERCONNECTIO_SLAVE.uf2 contains the firmware to be loaded on the Pico RP2040 board using USB cable and boot button.
 * When software loaded, the Pico board should be installed on the location marked SLAVE_1, SLAVE_2 and SLAVE_3 on interconnectIO Board.
 * On board Pico Led will flash slowly (heartbeat) on power ON.
 
