@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>InterconnectIO Slave: First TestStation InterconnectIO Slave firmware</title>
+<title>InterconnectIO Slave: First TestStation InterconnectIO Slave firmware  700-2001-011</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,40 +83,32 @@ $(document).ready(function(){initNavTree('md_README.html',''); initResizable(); 
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">First TestStation InterconnectIO Slave firmware </div></div>
+  <div class="headertitle"><div class="title">First TestStation InterconnectIO Slave firmware 700-2001-011 </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >The complete FTS project is documented on a github website: <a href="https://dlock8.github.io/FTS_Website/">https://dlock8.github.io/FTS_Website/</a></p>
+<div class="textblock"><p >The complete FTS project is documented on a github website: <a href="https://FirstTestStation.github.io/FTS_Website/">https://FirstTestStation.github.io/FTS_Website/</a></p>
 <p >On this deposit, we have the firmware used to create the Slave Pico load to control the interconnectIO board.</p>
-<p >The hardware support for the firmware is on github location: <a href="https://github.com/dlock8/InterconnectIO_Board">https://github.com/dlock8/InterconnectIO_Board</a></p>
+<p >The hardware support for the firmware is on github location: <a href="https://github.com/FirstTestStation/InterconnectIO_Board">https://github.com/FirstTestStation/InterconnectIO_Board</a></p>
 <p >The Slave Pico firmware enables the Raspberry Pi Pico to function as an I2C slave device, acting as a large Input/Output integrated circuit. The device receives a command byte, which specifies the action to be performed, followed by a data byte indicating where the action should be applied.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 License</h1>
 <p >This project is licensed under the BSD 3-Clause License. See the <a href="./LICENSE">LICENSE</a> file for more details.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Project setup</h1>
-<p >This project has been developed on raspberry pi 4 following installation instruction from this pdf <a href="./documentation/getting-started-with-pico_C.pdf">getting-started-with-pico_C.pdf</a>, a copy of the pdf is located on the main folder. Visual studio has been used for development and raspberry pi 4 for Pico debug. <br  />
-</p>
+<p >This project was initially developed in 2020 on a Raspberry Pi 4, following the installation instructions from Getting Started with Pico_C.pdf Version 1.4.</p>
+<p >The current version has been developed on a Raspberry Pi 5 using Visual Studio with the Raspberry Pi Pico extension, following the instructions in Getting Started with Pico_C.pdf dated 15 October 2024.</p>
 <p >Based on <a href="https://github.com/vmilea/pico_i2c_slave">https://github.com/vmilea/pico_i2c_slave</a>. The pico_i2c_slave software has been added to enable the Raspberry Pi Pico to function as an I2C device.</p>
-<p >The compilation is performed using Visual Studio and the important extension installed are:</p>
+<p >For debugging, we utilize the GPIO pins of the Raspberry Pi 5, instead of the suggested debug probe.</p>
+<p >Doxygen need to be installed. See the instructions <a href="https://github.com/fbaeuerlein/cpp-vscode-guide/blob/master/doc/Documentation.md">doxygen</a></p>
+<p >The compilation is performed using Visual Studio and the extension installed are:</p>
 <ul>
-<li>Cmake v0.0.17</li>
-<li>Cmake Tools v1.20.10</li>
-<li>Cortex-Debug v1.12.1</li>
-<li>debug-tracker-vscode v0.0.15</li>
+<li>Raspberry Pi Pico Visual Studio Code extension 0.17.2</li>
 <li>Doxygen Documentation Generator v1.4.0</li>
 <li>Doxygen runner v1.8.0</li>
-<li>Github Pull Request v0.96.0</li>
-<li>Hex Editor v1.10.0</li>
-<li>MemoryView v0.0.25</li>
-<li>peripheral Viewer v1.4.6</li>
-<li>RTOS view v0.0.7</li>
-<li>C/C++ v1.21.6</li>
 </ul>
-<p >I not sure if all extensions are required but is the one installed presently.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Building</h1>
-<p >Build of this cmake project is performed with Visual Studio</p>
+<p >Build of this cmake project is performed with Visual Studio using Raspberry Pi Pico extension</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Development</h1>
 <ul>
@@ -125,13 +117,47 @@ Development</h1>
 <li><a href="pico_sdk_import.cmake"><code>pico_sdk_import.cmake</code></a> was (as usual) copied verbatim from the Pico SDK and allows CMake to interact with the SDK’s functionality.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md5"></a>
+Firmware loading Instructions</h1>
+<h2><a class="anchor" id="autotoc_md6"></a>
+1. Download the Latest Firmware UF2 File:</h2>
+<p >You can download the latest firmware UF2 file from the following link:</p>
+<p ><a href="https://github.com/FirstTestStation/InterconnectIO_Slave_Firmware/blob/main/build/firmware/INTERCONNECTIO_SLAVE.uf2">Download UF2 File</a></p>
+<p >On the GitHub page, select <b>Download Raw file</b> to get the UF2 file.</p>
+<h2><a class="anchor" id="autotoc_md7"></a>
+2. Prepare your Raspberry Pi Pico:</h2>
+<ul>
+<li>Make sure your Raspberry Pi Pico is not connected to your computer.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md8"></a>
+3. Enter Bootloader Mode:</h2>
+<ul>
+<li>Hold down the <b>BOOTSEL</b> button on your Raspberry Pi Pico.</li>
+<li>While holding the <b>BOOTSEL</b> button, connect the Pico to your computer via USB.</li>
+<li>Release the <b>BOOTSEL</b> button after the Pico appears as a mass storage device on your computer.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md9"></a>
+4. Copy the UF2 File:</h2>
+<ul>
+<li>Once in bootloader mode, the Raspberry Pi Pico will show up as a removable storage drive named <code>RPI-RP2</code>.</li>
+<li>Copy the downloaded UF2 file (e.g., <code>INTERCONNECTIO_SLAVE.uf2</code>) to the <code>RPI-RP2</code> drive.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md10"></a>
+5. Eject the Device:</h2>
+<ul>
+<li>After the file is copied, safely eject the <code>RPI-RP2</code> drive from your computer.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md11"></a>
+6. Reboot:</h2>
+<ul>
+<li>The Raspberry Pi Pico will automatically reboot and start running the new firmware.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md12"></a>
 Installation</h1>
 <ul>
-<li>The Files slave.uf2 contains the firmware to be loaded on the Pico RP2040 board using USB cable and boot button.</li>
 <li>When software loaded, the Pico board should be installed on the location marked SLAVE_1, SLAVE_2 and SLAVE_3 on interconnectIO Board.</li>
 <li>On board Pico Led will flash slowly (heartbeat) on power ON.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 I2C Command supported</h1>
 <p >Pico i2C Slave mode Protocol</p>
 <p >I2C Command is 2 bytes long: Command_byte (1 byte) + Data (1 byte)</p>
@@ -187,7 +213,7 @@ I2C Command supported</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">65   </td><td class="markdownTableBodyNone">Get Pads state Gpx   </td><td class="markdownTableBodyNone">Read PAD register for Gpx   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md14"></a>
 8 Bit I/O port I2C Command</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -215,7 +241,7 @@ I2C Command supported</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Bit 3   </td><td class="markdownTableBodyNone">watchdog triggered 1= true   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md15"></a>
 I2C Communication Example</h1>
 <p >On these example, we use the i2c loopback mode </p><pre class="fragment">send_master(11, 22);     Command: 11, Data:22.   Set the GPIO 22 to 1 
 send_master(15, 0x02);   Command: 15, Data:0x02. Read the state of GPIO 02 

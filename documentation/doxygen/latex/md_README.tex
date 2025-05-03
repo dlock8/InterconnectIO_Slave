@@ -1,48 +1,70 @@
-The complete FTS project is documented on a github website\+: \href{https://dlock8.github.io/FTS_Website/}{\texttt{ https\+://dlock8.\+github.\+io/\+FTS\+\_\+\+Website/}}
+The complete FTS project is documented on a github website\+: \href{https://FirstTestStation.github.io/FTS_Website/}{\texttt{ https\+://\+First\+Test\+Station.\+github.\+io/\+FTS\+\_\+\+Website/}}
 
 On this deposit, we have the firmware used to create the Slave Pico load to control the interconnect\+IO board.
 
-The hardware support for the firmware is on github location\+: \href{https://github.com/dlock8/InterconnectIO_Board}{\texttt{ https\+://github.\+com/dlock8/\+Interconnect\+IO\+\_\+\+Board}}
+The hardware support for the firmware is on github location\+: \href{https://github.com/FirstTestStation/InterconnectIO_Board}{\texttt{ https\+://github.\+com/\+First\+Test\+Station/\+Interconnect\+IO\+\_\+\+Board}}
 
 The Slave Pico firmware enables the Raspberry Pi Pico to function as an I2C slave device, acting as a large Input/\+Output integrated circuit. The device receives a command byte, which specifies the action to be performed, followed by a data byte indicating where the action should be applied.\hypertarget{md_README_autotoc_md1}{}\doxysection{License}\label{md_README_autotoc_md1}
 This project is licensed under the BSD 3-\/Clause License. See the \href{./LICENSE}{\texttt{ LICENSE}} file for more details.\hypertarget{md_README_autotoc_md2}{}\doxysection{Project setup}\label{md_README_autotoc_md2}
-This project has been developed on raspberry pi 4 following installation instruction from this pdf \href{./documentation/getting-started-with-pico_C.pdf}{\texttt{ getting-\/started-\/with-\/pico\+\_\+\+C.\+pdf}}, a copy of the pdf is located on the main folder. Visual studio has been used for development and raspberry pi 4 for Pico debug. ~\newline
+This project was initially developed in 2020 on a Raspberry Pi 4, following the installation instructions from Getting Started with Pico\+\_\+\+C.\+pdf Version 1.\+4.
 
+The current version has been developed on a Raspberry Pi 5 using Visual Studio with the Raspberry Pi Pico extension, following the instructions in Getting Started with Pico\+\_\+\+C.\+pdf dated 15 October 2024.
 
 Based on \href{https://github.com/vmilea/pico_i2c_slave}{\texttt{ https\+://github.\+com/vmilea/pico\+\_\+i2c\+\_\+slave}}. The pico\+\_\+i2c\+\_\+slave software has been added to enable the Raspberry Pi Pico to function as an I2C device.
 
-The compilation is performed using Visual Studio and the important extension installed are\+:
+For debugging, we utilize the GPIO pins of the Raspberry Pi 5, instead of the suggested debug probe.
+
+Doxygen need to be installed. See the instructions \href{https://github.com/fbaeuerlein/cpp-vscode-guide/blob/master/doc/Documentation.md}{\texttt{ doxygen}}
+
+The compilation is performed using Visual Studio and the extension installed are\+:
 
 
 \begin{DoxyItemize}
-\item Cmake v0.\+0.\+17
-\item Cmake Tools v1.\+20.\+10
-\item Cortex-\/\+Debug v1.\+12.\+1
-\item debug-\/tracker-\/vscode v0.\+0.\+15
+\item Raspberry Pi Pico Visual Studio Code extension 0.\+17.\+2
 \item Doxygen Documentation Generator v1.\+4.\+0
 \item Doxygen runner v1.\+8.\+0
-\item Github Pull Request v0.\+96.\+0
-\item Hex Editor v1.\+10.\+0
-\item Memory\+View v0.\+0.\+25
-\item peripheral Viewer v1.\+4.\+6
-\item RTOS view v0.\+0.\+7
-\item C/\+C++ v1.\+21.\+6
-\end{DoxyItemize}
-
-I not sure if all extensions are required but is the one installed presently.\hypertarget{md_README_autotoc_md3}{}\doxysection{Building}\label{md_README_autotoc_md3}
-Build of this cmake project is performed with Visual Studio\hypertarget{md_README_autotoc_md4}{}\doxysection{Development}\label{md_README_autotoc_md4}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md3}{}\doxysection{Building}\label{md_README_autotoc_md3}
+Build of this cmake project is performed with Visual Studio using Raspberry Pi Pico extension\hypertarget{md_README_autotoc_md4}{}\doxysection{Development}\label{md_README_autotoc_md4}
 
 \begin{DoxyItemize}
 \item \href{slave.c}{\texttt{ {\ttfamily slave.\+c}}} is the main source file for the firmware.
 \item \href{CMakeLists.txt}{\texttt{ {\ttfamily CMake\+Lists.\+txt}}} contains build instructions for CMake.
 \item \href{pico_sdk_import.cmake}{\texttt{ {\ttfamily pico\+\_\+sdk\+\_\+import.\+cmake}}} was (as usual) copied verbatim from the Pico SDK and allows CMake to interact with the SDK’s functionality.
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md5}{}\doxysection{Installation}\label{md_README_autotoc_md5}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md5}{}\doxysection{Firmware loading Instructions}\label{md_README_autotoc_md5}
+\hypertarget{md_README_autotoc_md6}{}\doxysubsection{1. Download the Latest Firmware UF2 File\+:}\label{md_README_autotoc_md6}
+You can download the latest firmware UF2 file from the following link\+:
+
+\href{https://github.com/FirstTestStation/InterconnectIO_Slave_Firmware/blob/main/build/firmware/INTERCONNECTIO_SLAVE.uf2}{\texttt{ Download UF2 File}}
+
+On the Git\+Hub page, select {\bfseries{Download Raw file}} to get the UF2 file.\hypertarget{md_README_autotoc_md7}{}\doxysubsection{2. Prepare your Raspberry Pi Pico\+:}\label{md_README_autotoc_md7}
 
 \begin{DoxyItemize}
-\item The Files slave.\+uf2 contains the firmware to be loaded on the Pico RP2040 board using USB cable and boot button.
+\item Make sure your Raspberry Pi Pico is not connected to your computer.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md8}{}\doxysubsection{3. Enter Bootloader Mode\+:}\label{md_README_autotoc_md8}
+
+\begin{DoxyItemize}
+\item Hold down the {\bfseries{BOOTSEL}} button on your Raspberry Pi Pico.
+\item While holding the {\bfseries{BOOTSEL}} button, connect the Pico to your computer via USB.
+\item Release the {\bfseries{BOOTSEL}} button after the Pico appears as a mass storage device on your computer.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md9}{}\doxysubsection{4. Copy the UF2 File\+:}\label{md_README_autotoc_md9}
+
+\begin{DoxyItemize}
+\item Once in bootloader mode, the Raspberry Pi Pico will show up as a removable storage drive named {\ttfamily RPI-\/\+RP2}.
+\item Copy the downloaded UF2 file (e.\+g., {\ttfamily INTERCONNECTIO\+\_\+\+SLAVE.\+uf2}) to the {\ttfamily RPI-\/\+RP2} drive.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md10}{}\doxysubsection{5. Eject the Device\+:}\label{md_README_autotoc_md10}
+
+\begin{DoxyItemize}
+\item After the file is copied, safely eject the {\ttfamily RPI-\/\+RP2} drive from your computer.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md11}{}\doxysubsection{6. Reboot\+:}\label{md_README_autotoc_md11}
+
+\begin{DoxyItemize}
+\item The Raspberry Pi Pico will automatically reboot and start running the new firmware.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md12}{}\doxysection{Installation}\label{md_README_autotoc_md12}
+
+\begin{DoxyItemize}
 \item When software loaded, the Pico board should be installed on the location marked SLAVE\+\_\+1, SLAVE\+\_\+2 and SLAVE\+\_\+3 on interconnect\+IO Board.
 \item On board Pico Led will flash slowly (heartbeat) on power ON.
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md6}{}\doxysection{I2\+C Command supported}\label{md_README_autotoc_md6}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md13}{}\doxysection{I2\+C Command supported}\label{md_README_autotoc_md13}
 Pico i2C Slave mode Protocol
 
 I2C Command is 2 bytes long\+: Command\+\_\+byte (1 byte) + Data (1 byte)
@@ -82,7 +104,7 @@ I2C Command is 2 bytes long\+: Command\+\_\+byte (1 byte) + Data (1 byte)
 61   &Set GPx to Pads State   &Write contains of command 60 on GPx    \\\cline{1-3}
 65   &Get Pads state Gpx   &Read PAD register for Gpx   \\\cline{1-3}
 \end{longtabu}
-\hypertarget{md_README_autotoc_md7}{}\doxysection{8 Bit I/\+O port I2\+C Command}\label{md_README_autotoc_md7}
+\hypertarget{md_README_autotoc_md14}{}\doxysection{8 Bit I/\+O port I2\+C Command}\label{md_README_autotoc_md14}
 \tabulinesep=1mm
 \begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
 \hline
@@ -105,7 +127,7 @@ I2C Command is 2 bytes long\+: Command\+\_\+byte (1 byte) + Data (1 byte)
 &Bit 2   &Error 1= true    \\\cline{1-3}
 &Bit 3   &watchdog triggered 1= true   \\\cline{1-3}
 \end{longtabu}
-\hypertarget{md_README_autotoc_md8}{}\doxysection{I2\+C Communication Example}\label{md_README_autotoc_md8}
+\hypertarget{md_README_autotoc_md15}{}\doxysection{I2\+C Communication Example}\label{md_README_autotoc_md15}
 On these example, we use the i2c loopback mode \begin{DoxyVerb}send_master(11, 22);     Command: 11, Data:22.   Set the GPIO 22 to 1 
 send_master(15, 0x02);   Command: 15, Data:0x02. Read the state of GPIO 02 
 send_master(85, 0xC0);   Command: 85, Data:0xC0. Read the Input pin 7 and 6 of Port 0 

@@ -1,0 +1,33 @@
+# Base style
+BasedOnStyle:    LLVM
+
+# General formatting
+IndentWidth:     4
+TabWidth:        4
+UseTab:          Never        # Use spaces instead of tabs
+
+# Braces and control flow
+BreakBeforeBraces: Allman     # Puts opening brace on a new line
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: InlineOnly
+
+# Pointer alignment
+PointerAlignment: Left        # int* ptr; instead of int *ptr;
+
+# Spaces
+SpaceBeforeParens: ControlStatements    # if (), while (), etc.
+SpacesBeforeTrailingComments: 1
+SpaceAfterCStyleCast: true
+
+# Function formatting
+AlwaysBreakAfterReturnType: None       # Keep return type and name together
+AlwaysBreakAfterDefinitionReturnType: None
+AlignAfterOpenBracket: Align           # Align wrapped function params
+
+# Preprocessor
+IndentPPDirectives: AfterHash          # Align preprocessor directives
+
+# Comments and line length
+ColumnLimit: 150                       # Adjust for readability
+FixNamespaceComments: false            # N/A for C, but avoids clutter

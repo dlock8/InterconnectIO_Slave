@@ -1,10 +1,10 @@
 # First TestStation InterconnectIO Slave firmware  700-2001-011
 
-The complete FTS project is documented on a github website:  https://dlock8.github.io/FTS_Website/
+The complete FTS project is documented on a github website:  https://FirstTestStation.github.io/FTS_Website/
 
 On this deposit, we have the firmware used to create the Slave Pico load to control the interconnectIO board.
 
-The hardware support for the firmware is on github location: https://github.com/dlock8/InterconnectIO_Board
+The hardware support for the firmware is on github location: https://github.com/FirstTestStation/InterconnectIO_Board
 
 The Slave Pico firmware enables the Raspberry Pi Pico to function as an I2C slave device, acting as a large Input/Output integrated circuit. 
 The device receives a command byte, which specifies the action to be performed, followed by a data byte indicating where the action should be applied.
@@ -42,15 +42,14 @@ Build of this cmake project is performed with Visual Studio using Raspberry Pi P
 * [`slave.c`](slave.c) is the main source file for the firmware.
 * [`CMakeLists.txt`](CMakeLists.txt) contains build instructions for CMake.
 * [`pico_sdk_import.cmake`](pico_sdk_import.cmake) was (as usual) copied verbatim from the Pico SDK and allows CMake to interact with the SDK’s functionality.
-* [`raspberrypi-swd.cfg`](raspberrypi-swd.cfg) need to be copied on openocd interface folder 
-(../.pico-sdk/openocd/0.12.0+dev/scripts/interface/) if GPIO pins is used to debug project.
+
 
 ## Firmware loading Instructions
 
 ### 1. Download the Latest Firmware UF2 File:
    You can download the latest firmware UF2 file from the following link:
 
-   [Download UF2 File](https://github.com/dlock8/InterconnectIO_Slave/blob/main/build/firmware/INTERCONNECTIO_SLAVE.uf2)
+   [Download UF2 File](https://github.com/FirstTestStation/InterconnectIO_Slave_Firmware/blob/main/build/firmware/INTERCONNECTIO_SLAVE.uf2)
 
    On the GitHub page, select **Download Raw file** to get the UF2 file.
 
